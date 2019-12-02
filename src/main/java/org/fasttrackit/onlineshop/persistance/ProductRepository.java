@@ -14,7 +14,7 @@ Page<Product> findByNameContainingAndQuantityGreaterThanEqual(String partialName
 //JPQL syntax (java persistence query language)
 //@Query("SELECT product FROM Product product WHERE name LIKE '%:partialName%''")
 
-    @Query(value = "SELECT * FROM product WHERE name LIKE '%?0%'", nativeQuery = true)
+    @Query(value = "SELECT * FROM product WHERE `name` LIKE '%?0%'", nativeQuery = true)
     Page<Product> findByPartialName(String partialName, Pageable pageable);
 
 }
