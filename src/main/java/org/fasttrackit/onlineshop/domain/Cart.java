@@ -19,6 +19,18 @@ public class Cart {
     @JoinTable(name = "cart_product", joinColumns = @JoinColumn(name = "cart_id"), inverseJoinColumns = @JoinColumn(name = "product_id"))
     private Set<Product> products = new HashSet<>();
 
+    public void addToCart(Product product){
+        //adding received product to the current cart
+        products.add(product);
+        //adding current cart to the carts set of the received product
+        product.getCarts().add(this);
+    }
+
+    public void removeFromCart (Product product){
+        products.remove(product);
+        product.getCarts().remove(this);
+    }
+
     public Long getId() {
         return id;
     }
@@ -53,6 +65,7 @@ public class Cart {
 
     @Override
     public int hashCode() {
+
         return Objects.hash(id);
     }
 }
